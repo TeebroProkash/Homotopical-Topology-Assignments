@@ -177,6 +177,13 @@ We therefore have a continuous bijection $\pi(*,A)\xrightarrow{h}\pi((D^q,S^{q-1
      $(Map(S^q,X),Map_b(S^q,X))$ is an $n$-connected pair $\forall q\geqslant n$ iff $X$ is $n$-connected.
 \end{rem}
 
+\begin{clm}
+	$\mathcal{H}:\text{Map}(X,\text{Map}(Y,Z))\rightarrow\text{Map}(X\times Y,Z)$ is a homeomorphism.
+\end{clm}
+\textbf{\emph{Proof}:} It can be shown that $\mathcal{H}$ is a bijection at the level of sets.
+In the compact-open topology, we have $M(C_x\times C_y,V)\subseteq\text{Map}(X\times Y,Z)$. Here, $C_x$ and $C_y$ are compact subsets in X and Y respectively and $V\subseteq Z$ is an open set, such that if $F\in M(C_x\times C_y, V)$, then $F(C_x,C_y)\subseteq V$.\\[10pt]
+$\mathcal{H}^{-1}(F):X\to\text{Map}(Y,Z)$, such that $F(C_x)\subseteq M(C_y,V)$. Hence, $F\in M(C_x, M(C_y, V))$. Therefore, we see that $\mathcal{H}^{-1}(M(C_x\times C_y, V))\subseteq M(C_x,M(C_y,V))$. Therefore, $\mathcal{H}$ is continuous. Similar arguments show that the inverse is also continuous. Hence, this is a homeomorphism.
+
 
 
 
