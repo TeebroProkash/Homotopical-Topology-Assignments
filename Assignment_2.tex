@@ -119,9 +119,37 @@ We write the surface as $e^0\bigcup_{j=1}^{2g+2}{e^1_j}\cup e^2$ and write the m
      \end{enumerate}
 \end{clm}
 \textbf{\emph{Proof:}}
-$\mathit{(2)\Rightarrow(1)}$ We write $Map_b(S^q,X)\rightarrow Map(S^q,X)\rightarrow \pi(S^q,X)$, where the first map is the natural inclusion map and the second is the quotient map. $f\sim_b g\ \Rightarrow f\sim g$ so this gives us a map $\pi_b(S^q,X)\xrightarrow{h} \pi(S^q,X)$. \\ 
-We consider $S^q\subseteq \mathbb{R}^{q+1}$, with its base-point at $s_0=(0,0,\dots,-1)$.\\ Take any map $f:S^q\rightarrow X$, let $f(s_0)=x$. $\exists p:[0,1]\rightarrow X;\ p(0)=x,\ p(1)=x_0$. Define $\tilde{f}:S^q\rightarrow X$ by $$\tilde{f}(r_1,r_2,\dots,r_{q+1}):=\begin{cases}f(r_1,r_2,\dots, 2r_{q+1}-1),\ \forall r_{q+1}\geqslant 0;\\ p(-r_{q+1}),\ \forall r_{q+1}\leqslant 0\end{cases}$$ Pasting lemma ensures continuity of $\tilde{f}$, and $\tilde{f}(s_0)=x_0$. In fact $f\sim\tilde{f}$ by the homotopy $H: S^q\times I \rightarrow X$ given by: $$H((r_1,r_2,\dots,r_{q+1}),t):= \begin{cases}f\left(r_1,r_2,\dots,\frac{2r_{q+1}-t}{2-t} \right),\ \forall r_{q+1}\geqslant t-1;\\ p(-r_{q+1}+t-1),\ \forall r_{q+1}\leqslant t-1\end{cases}$$ with $H(s,0)=f(s),\ H(s,1)=\tilde{f}(s)$. \\ Therefore, $h([\tilde{f}]_b)=[f]$, and thus $h$ is surjective. $\blacksquare$ \\[10pt]
-$\mathit{(1)\Rightarrow (3)}$ The constant map $f_0:S^q\rightarrow X$, $f_0\equiv x_0$ is continuous. $(1)$ tells us that any map $f:S^q\rightarrow X$ is homotopic to $f_0$. We call that homotopy $H_f:S^q\times I\rightarrow X$, $H_f(s,0)=f_0(s)=x_0$, $H_f(s,1)=f(s)$. \\ $H_f$ defines a continuous map $F$ from the cone over $S^q$ to $X$, equalling $f$ on its base. Noting that $D^{q+1}$ is homeomorphic to the cone over $S^q$ with its boundary identified with the base, $F$ is our desired map. $\blacksquare$ \\[10pt]
+$\mathit{(2)\Rightarrow(1)}$Let $g_0, g_1 \in \text{Map}_b(S^q,X)$. Given that $\pi(S^q, X)$ has only one element, we have to show that $\pi_b(S^q,X)$ also has only one element. In other words, need to find a basepoint preserving homotopy, $g_0\sim_b g_1$.\\
+Since it is clear that $g_0, g_1\in\pi(S^q,X)$, we have a homotopy such that for all $s\in S^q$,
+\begin{equation}
+	\begin{aligned}
+	h:S^q\times I\rightarrow X\nonumber\\
+	h(s, 0)=g_0(s)\nonumber\\
+	h(s, 1)=g_1(s) 
+	\end{aligned}
+\end{equation}
+Let $\tilde{s}$ be the base point of $S^q$. Then we can see that $h_{\tilde{s}}(\_):=h(\tilde{s},\_):I\rightarrow X$ is a loop in $X$. Under the assumption that $X$ is simply-connected, this loop is null-homotopic. In other words, there exists a homotopy such that for all $x\in S^1$
+\begin{equation}
+	\begin{aligned}
+		f:S^1\times& I\rightarrow X\nonumber\\
+		f(x, 0)=&h_{\tilde{s}}\Big(\frac{x}{2\pi}\Big)\nonumber\\
+		f(x, 1)=&\tilde{s}
+	\end{aligned}
+\end{equation}
+
+Using this information we can construct the required basepoint preserving homotopy, $H_b$
+\begin{equation}
+	\begin{aligned}
+	H_b:&S^q\times I\rightarrow X\nonumber\\
+	H_b(s,t):=&\begin{cases}
+	h(s, t), \quad s\ne\tilde{s}\\
+	f(h(x, t), I), \quad s=\tilde{s}
+	\end{cases}
+	\end{aligned}
+\end{equation}
+Clearly, $H_b(s, 0)=g_0(s)$ and $H_b(s, 1)=g_1(s)$.
+
+$\blacksquare$ \\[10pt]
 $\mathit{(3)\Rightarrow (2)}$ We note that $f_0\in Map_b(S^q,X)$. Take any $f\in Map_b(S^q,X)$, and extend it to $F$ as in $(3)$. Then,treating $S^q\subset D^{q+1}\subset\mathbb{R}^{q+1}$, we define $H:S^q\times I\rightarrow X$ as follows: $$H((r_1,r_2,\dots,r_{q+1}),t):=F(tr_1,tr_2,\dots, tr_{q+1}+t-1)$$ $H(s_0,t)=F(s_0)=f(s_0)=x_0\ \forall t\in I$, $H(s,0)=f_0(s)$, $H(s,1)=f(s)$, so $f\sim_b f_0$. Therefore, $\pi_b(S^q,X)$ has one element. $\blacksquare$
 \begin{defn}
      $X$ is called $n$-connected iff $\forall q\leqslant n$, any map $f:S^q\rightarrow X$ extends to a map $F:D^{q+1}\rightarrow X$, $F|_{\partial D^{q+1}}=f$.
