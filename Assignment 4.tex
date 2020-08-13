@@ -1,0 +1,299 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,graphicx,amssymb,amscd,wrapfig,varwidth,
+mdframed,hyperref,xcolor}
+\definecolor{penblue}{rgb}{0.2, 0.1, 0.6}
+\definecolor{white}{rgb}{1,1,1}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ex}[thm]{Exercise}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{clm}[thm]{Claim}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rem*}{Remark}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{eg}{Example}[section] 
+
+\title{Problem Set 4}
+    \author{Lectures 8, 9\\Homotopical Topology; Fomenko, Fuchs}
+    \date{Prokash Kumar Kundu}
+    \maketitle
+    
+\section{\normalsize{Lecture 8, Exercise 2:}}
+
+For a $H$-space $Y$, we have maps 
+\begin{align*}
+[\text{multiplication}]&\ \mu:Y\times Y\rightarrow Y \\ [\text{inversion}]&\ \nu: Y\rightarrow Y
+\end{align*}
+Please note that the multiplicative structure of a topological group makes it a $H$-space, with all the requisite homotopies being the constant homotopy. 
+\begin{defn}
+	Let $y_1,\ y_2\in Y$, we write 
+	$h_{y_1}^{y_2}:Y\rightarrow Y$ as $h_{y_1}^{y_2}(y)=\mu(y,\mu(y_2,\nu(y_1))$; 
+	inducing $\left(h_{y_1}^{y_2}\right)_{*}:\pi_n(Y,y_1)\rightarrow \pi_n(Y,y_2)$. 
+\end{defn} 
+\begin{rem}
+	Indeed, $h$ is natural in $y_1$ and $y_2$, \emph{i.e.}, 
+	\begin{align*}
+		h:Y\times Y\times Y& \rightarrow Y\\ (y_1,y_2,y_3)&\mapsto h_{y_1}^{y_2}(y_3)
+	\end{align*} 
+	is continuous in the product topology. 
+	This follows from the continuity of $\mu$ and $\nu$.  
+\end{rem}
+\begin{thm}
+	Then for any path $u:I\rightarrow Y$, $u(0)=y_1,\ u(1)=y_2$, 
+	we have $u_{\#}:\pi_n(Y,y_1)\rightarrow \pi_n(Y,y_2)$; 
+	and, $u_{\#}=\left(h_{y_1}^{y_2}\right)_{*}$.
+\end{thm}
+\textbf{\emph{Proof:}} Take $f:(D^n,\partial D^n)\rightarrow (Y,y_1)$. 
+We will construct a homotopy
+$$H:I\times(D^n,\partial D^n)\rightarrow (Y,y_2)$$
+with $H(0,x)=u_{\#}\circ f(x)$ and $H(1,x) =\left(h_{y_1}^{y_2}\right)_{*}\circ f(x)$. \\[8pt]
+Indeed, we can construct
+$$\tilde{H}(t,x):=
+\begin{cases}
+\left(h_{y_1}^{u(t)}\right)_{*}\circ f((2-t)x)\ \ \ \forall \lVert x\rVert \leqslant \frac{1}{2-t} \\
+u\left((2-t)\lVert x\rVert+t-1\right)\ \ \ \forall \lVert x\rVert > \frac{1}{2-t}
+\end{cases}$$
+``\emph{by moving the spheroid along $u$}''.\\[8pt]
+Clearly, $\tilde{H}(1,.)=\left(h_{y_1}^{y_2}\right)_{*}\circ f(x)$. $\tilde{H}(0,.)$ is homotopic to $u_{\#}\circ f$ because $Y$ is a $H$-space. Composing, we get our required homotopy. $\blacksquare$ 
+\begin{cor}
+	$H$-spaces (including topological groups) are simple. 
+\end{cor}
+$Q.E.D.$
+
+\section{\normalsize{Lecture 8, Exercises 3, 4:}}
+In assignment 3, we have constructed 
+\begin{itemize}
+\item a contactible universal cover (the \emph{Cayley graph}) for a bouquet of $n$ circles 
+\item a contractible universal cover ($\cong\mathbb{R}^2$) for every classical surface except $S^2$ and $\mathbb{R}P^2$. 
+\end{itemize}
+Because for a covering $p:\tilde{X}\rightarrow X$, $p_*:\pi_n(\tilde{X})\rightarrow \pi_n(X)$ is an isomorphism for all $n\geqslant 2$, we deduce that all the above spaces have trivial homotopy groups for $n\geqslant 2$. \\ $Q.E.D.$
+
+\section{\normalsize{Lecture 8, Exercise 13:}}
+\begin{thm}
+If A is a retract of X, then, for all n,
+\begin{enumerate}
+\item $i_{*}:\pi_n(A)\rightarrow \pi_n(X)$ is a monomorphism
+\item $j_{*}:\pi_n(X)\rightarrow\pi_n(X,A)$ is an epimorphism 
+\item $\partial: \pi_n(X,A)\rightarrow \pi_{n-1}(A)$ is a zero-homomorphism
+\end{enumerate}
+Additionally, $\pi_n(X)\cong \pi_n(A)\times\pi_n(X,A)$
+\end{thm}
+\textbf{\emph{Proof:}} Let $r:X\rightarrow A$ be the retract.
+\begin{enumerate}
+	\item We take spheroids $f,g:(D^n,\partial D^n)\rightarrow(A,x_0)$ in $A	$. If $f\sim_X g$ by a homotopy $H$, then $r\circ H$ is an $A$-homotopy of $f$ and $g$. Therefore, $i_{*}:\pi_n(A)\rightarrow \pi_n(X)$ is injective, thence, a monomorphism. $\blacksquare$
+	\item We take $f:(D^n,\partial D^n)\rightarrow(X,A)$. We define $H:I\times(D^n,\partial D^n)\rightarrow(X,A)$ to be 
+	$$H(t,x):=
+	\begin{cases}
+	f((1+t)x) &\ \ \ \forall \lVert x\rVert \leqslant \frac{1}{1+t}\\
+	r\circ f\left((2-(1+t)\lVert x\rVert)\frac{x}{\lVert x\rVert}\right)&\ \ \ \forall \lVert x\rVert > \frac{1}{1+t}
+	\end{cases}$$
+	Then, writing $\tilde{f}:(D^n,\partial D^n)\rightarrow(X,A);\ \tilde{f}(x):=H(1,x)$, $\tilde{f}$ is indeed a spheroid in $X$ with $f\sim_{(X,A)}\tilde{f}$. \\ 
+	Thus $[f]_{(X,A)}$ is in the image of $j_{*}$ $\forall\ f:(D^n,\partial D^n)\rightarrow(X,A)$. Therefore, $j_{*}:\pi_n(X)\rightarrow\pi_n(X,A)$ is surjective, thus an epimorphism. $\blacksquare$
+	\item Take $f:(D^n,\partial D^n)\rightarrow(X,A)$. We have $H:I\times(S^{n-1}\cong)\partial D^n\rightarrow A$ given by 
+	$$H(t,(x_1,x_2,\dots,x_n)):=r\circ f((1-t)x_1,(1-t)x_2,\dots, (1-t)x_{n-1}, (1-t)x_n-t)$$ giving a (base-point preserving) homotopy between $\partial f$ and the constant spheroid in $A$. Thus, $\forall\ f:(D^n,\partial D^n)\rightarrow(X,A)$, $[\partial f]_A=0$, hence, $\partial: \pi_n(X,A)\rightarrow \pi_{n-1}(A)$ is a zero-homomorphism. $\blacksquare$
+\end{enumerate}
+We have therefore an exact sequence 
+$$0\rightarrow\pi_n(A)\xrightarrow{i_*}\pi_n(X)\xrightarrow{j_*}\pi_n(X,A)\xrightarrow{\partial}0 $$
+where we can define $\pi_n(X)\xrightarrow{r_*}\pi_n(A)$ such that $r_*\circ i_* = id_{\pi_n(A)}$ (because $r\circ i = id_A$). \\ Hence the sequence splits and we have $\pi_n(X)\cong \pi_n(A)\times\pi_n(X,A)$ .  $\blacksquare$
+
+\section{\normalsize{Lecture 8, Exercise 14:}}
+\begin{thm}
+If A is contractible to a point within X (path-connected), then, for all n,
+\begin{enumerate}
+	\item $i_{*}:\pi_n(A)\rightarrow \pi_n(X)$ is a zero homomorphism
+	\item $j_{*}:\pi_n(X)\rightarrow\pi_n(X,A)$ is a monomorphism
+	\item $\partial: \pi_n(X,A)\rightarrow \pi_{n-1}(A)$ is an epimorphism.
+\end{enumerate}
+Additionally, $\pi_n(X,A)\cong \pi_n(X)\times\pi_{n-1}(A)$
+\end{thm}
+\textbf{\emph{Proof:}} We have a homotopy $C_A:I\times (A,x_0)\rightarrow (X,x_0)$ with $C_A(0,.)=i$ and $C_A(1,.)\equiv x_0\in X$. 
+\begin{rem}
+	We don't need $C_A$ to be base-point preserving, or even to contract $A$ to $x_0$, if $X$ is simply-connected. All the following proofs would still hold, maybe with slight modifications. 
+\end{rem}
+\begin{enumerate}
+	\item Take a spheroid $f:S^n\rightarrow A$ in $A$. Then $C:I\times S^n\rightarrow X$ given by
+	$$C(t,x)= C_A(t,f(x))$$ gives a (base-point preserving) homotopy in $X$ from $f$ to the constant spheroid $x_0$. \\ 
+	Thus $\forall\ f:S^n\rightarrow A$, $[f]_X=0$, \emph{i.e.} $i_*([f])=0$. $\blacksquare$ 
+	\item Take spheroids $f,g:(D^n,\partial D^n)\rightarrow (X,x_0)$. Let there be an $(X,A)$ homotopy $H:I\times(D^n,\partial D^n)\rightarrow (X,A)$ between $f$ and $g$. We construct $\overline{H}:I\times I\times(D^n,\partial D^n)\rightarrow (X,A)$ as follows: 
+	$$\overline{H}(s,t,x):=
+	\begin{cases}
+	H(t,(s+1)x)&\ \ \ \forall \lVert x\rVert \leqslant \frac{1}{s+1} \\
+	C_A\left(((1+s)\lVert x\rVert-1),H\left(t,\frac{x}{\lVert x\rVert}\right)\right)&\ \ \ \forall \lVert x\rVert > \frac{2}{2-s} 
+	\end{cases}$$
+Then, $\overline{H}(1,.,.)$ is a $(X,x_0)$-homotopy between $\hat{f}$ and $\hat{g}$, where 
+\begin{align*}
+\hat{f}&= \begin{cases}f(2x)&\ \ \forall\lVert x\rVert \leqslant \frac{1}{2} \\ f\left(\frac{x}{\lVert x\rVert}\right) \forall\lVert x\rVert > \frac{1}{2} \end{cases} \\ 
+\hat{g}&= \begin{cases}g(2x)&\ \ \forall\lVert x\rVert \leqslant \frac{1}{2} \\ g\left(\frac{x}{\lVert x\rVert}\right) \forall\lVert x\rVert > \frac{1}{2} \end{cases}
+\end{align*}
+Clearly, $f\sim_{(X,x_0)}\hat{f}$ and $g\sim_{(X,x_0)}\hat{g}$, therefore, by composing homotopies, we get, $f\sim_{(X,x_0)}g$. \\[6pt]
+Thus $f\sim_{(X,x_0)} g$ iff $f\sim_{(X,A)} g$, so, in particular $j_*$ is injective. Therefore, $j_{*}:\pi_n(X)\rightarrow\pi_n(X,A)$ is a monomorphism.
+\item We construct a map $C_{*}:\pi_{n-1}(A)\rightarrow \pi_n(X,A)$ as follows. \\ Take a spheroid $f:S^n\rightarrow A$. Construct $\tilde{C}_f:(D^n,\partial D^n)\rightarrow (X,A)$ by $$\tilde{C}_f(x):=C_A\left(1-\lVert x\rVert, f\left(\frac{x}{\lVert x\rVert}\right)\right)$$
+Define $C_*([f]_A) := [\tilde{C}_f]_{(X,A)}$. It is easy to check that this construction is well-defined. $A$-homotopies of $n-1$ spheroids $f$ and $g$ in $A$ will give $(X,A)$-homotopies of $\tilde{C}_f$ and $\tilde{C}_g$ via a similar construction using $C_A$. \\[6pt]
+Also, $\partial \tilde{C}_f = f$ by construction. So, in particular, $\partial$ is surjective. Therefore, $\partial: \pi_n(X,A)\rightarrow \pi_{n-1}(A)$ is an epimorphism.
+\end{enumerate}
+We have therefore an exact sequence 
+$$0\rightarrow\pi_n(X)\xrightarrow{j_*}\pi_n(X,A)\xrightarrow{\partial}\pi_{n-1}(A)\xrightarrow{i_*}0 $$
+where we already have constructed $\pi_{n-1}(A)\xrightarrow{C_*}\pi_n(X,A)$ such that $\partial\circ C_* = id_{\pi_{n-1}(A)}$. \\ Hence the sequence splits and we have $\pi_n(X,A)\cong \pi_{n-1}(A)\times\pi_n(X)$ .  $\blacksquare$
+
+\section{\normalsize{Lecture 8, Exercise 14:}}
+\begin{thm}
+If there is a homotopy $F:I\times(X,x_0)\rightarrow (X,x_0)$ with $F(0,.)=id_X$ and $F(1,X)\subseteq A$, then, for all n,
+\begin{enumerate}
+	\item $i_{*}:\pi_n(A)\rightarrow \pi_n(X)$ is an epimorphism
+	\item $j_{*}:\pi_n(X)\rightarrow\pi_n(X,A)$ is the zero homomorphism
+	\item $\partial: \pi_n(X,A)\rightarrow \pi_{n-1}(A)$ is a monomorphism.
+\end{enumerate}
+Additionally, $\pi_n(A)\cong \pi_n(X)\times\pi_{n+1}(X,A)$
+\end{thm}
+\begin{rem}
+	If additionally $F(t,A)\subseteq A\ \forall t\in I$, then 
+	\begin{enumerate}
+	\item $A\xrightarrow{i}X,\ X\xrightarrow{F(1,.)}A,$ is a homotopy equivalence. 
+	\item $\pi_n(X,A)$ is the zero group for all $n$. 
+	\item $i_{*}:\pi_n(A)\rightarrow \pi_n(X)$ is an isomorphism for all $n$. 
+	\end{enumerate}
+\end{rem}
+\textbf{\emph{Proof:}} 
+\begin{enumerate}
+	\item Clearly, for a spheroid $f:(D^n,\partial D^n)\rightarrow (X,x_0)$ in $X$, 
+	\begin{itemize}
+	\item $F(1,.)\circ f$ is a spheroid in $A$. 
+	\item $F(1,.)\circ f\sim_{(X,x_0)}f$ by restriction of the homotopy $F$.
+	\end{itemize}
+	Therefore $i_*([F(1,.)\circ f]_A)=[f]_X$, and thus $i_*$ is surjective. Therefore, $i_{*}:\pi_n(A)\rightarrow \pi_n(X)$ is an epimorphism. $\blacksquare$
+	\item We take a spheroid $f:(D^n,\partial D^n)\rightarrow (X,x_0)$ in $X$. $[F(1,.)_*f]_X= [f]_X$, so we look at $j\circ F(1,.)\circ f$. We have a homotopy $H:I\times (D^n,\partial D^n)\rightarrow (X,A)$ given by: 
+	$$ H(t,(x_1,x_2,\dots, x_n):= j\circ F(1,.)\circ f((1-t)x_1,\dots,(1-t)x_{n-1},(1-t)x_n-t)$$ taking $j\circ F(1,.)\circ f$ to the constant spheroid relative to $A$. Thus $j_{*}:\pi_n(X)\rightarrow\pi_n(X,A)$ is the zero homomorphism. $\blacksquare$
+	\item We take a relative spheroid $f:(D^n,\partial D^n)\rightarrow (X,A)$. If there is a (base-point preserving) homotopy $C:I\times S^{n-1}\rightarrow A$ with $C(0,.)=\partial f$, $C(1,.)\equiv x_0$; we get a homotopy $\tilde{C}:I\times(D^n,\partial D^n)\rightarrow (X,A)$ given by 
+	$$\tilde{C}(t,x):=
+	\begin{cases}
+	f((1+t)x)&\ \ \ \forall\lVert x\rVert \leqslant \frac{1}{1+t} \\ 
+	C\left(((1+t)\lVert x\rVert -1),\left(\frac{x}{\lVert x\rVert}\right)\right) &\ \ \ \forall\lVert x\rVert > \frac{1}{1+t}
+	\end{cases}$$ from $\tilde{C}(0,.)=f$ to $\tilde{C}(1,.)\in\text{im}(j)$. \\ 
+	Thus $[\partial f]_A= 0$ iff $[f]_(X,A)\in \text{im}(j_*)$, and we've already established that $j_*$ is the zero homomorphism. \\ 
+	So, $\text{Ker}(\partial) =0$. Therefore, $\partial: \pi_n(X,A)\rightarrow \pi_{n-1}(A)$ is a monomorphism. $\blacksquare$. 
+\end{enumerate}
+We have therefore an exact sequence 
+$$0\rightarrow\pi_{n+1}(X,A)\xrightarrow{\partial}\pi_n(A)\xrightarrow{i_*}\pi_{n}(A)\xrightarrow{j_*}0 $$
+where we already have $\pi_{n}(X)\xrightarrow{F(1,.)_*}\pi_n(A)$ such that $i_*\circ F(1,.)_*= id_{\pi_{n}(X)}$. \\ Hence the sequence splits and we have $\pi_n(A)\cong \pi_n(X)\times\pi_{n+1}(X,A)$ .  $\blacksquare$
+
+\section{\normalsize{Lecture 9, Exercise 8:}}
+Let $(X,A)$ be a Borsuk pair, $W$ be a topological space. We define $E:=\text{Map}(X,W)$, $B:=\text{Map}(A,W)$; $p:E\rightarrow B$ is the restriction map. 
+
+\begin{lem}\label{diamond}
+	Take $A\subseteq X$ a topological pair, $W$ a topological space. Take $$\varphi:\text{Map}(I,\text{Map}(A,W))\rightarrow\text{Map}(I,\text{Map}(X,W))$$ taking homotopies over $A$ to homotopies over $X$. \\ 
+	If $\varphi(F)$ restricted to $A$ is equal to $F$ for all homotopies $F$, then $\phi$ is continuous in the compact-open topology. 
+\end{lem}
+\textbf{\emph{Proof:}} We take $J\subseteq_{\text{compact}}I$, $K\subseteq_{\text{compact}}X$, $U\subseteq_{\text{open}}W$. \\ 
+Because $\{V(J,V(K,U))\}$ for varying $J,\ K,\ U$ form a subbasis for the compact-open topology, it is enough to look at $\varphi^{-1}(V(J,V(K,U)))$.\\
+$\varphi^{-1}(V(J,V(K,U))) =_{[\text{by hypothesis}]} V(J,V(K\cap A,U))$ is open in $\text{Map}(I,\text{Map}(A,W))$. $\blacksquare$
+
+\begin{cor}\label{gold}
+	Let $(X,A)$ be a Borsuk pair, $W$ be a topological space. Construct $$\varphi:\text{Map}(I,\text{Map}(A,W))\rightarrow\text{Map}(I,\text{Map}(X,W))$$ by putting $\varphi(F)$ to be equal to any homotopy $\tilde{F}$ that is equal to $F$ when restricted to $A$. Because $(X,A)$ is a Borsuk pair, we can find such $\tilde{F}$ for any given $F$. The choice of $\tilde{F}$ is immaterial. \\ 
+	$\varphi$ thus constructed is continuous. 
+\end{cor}
+We are now prepared to approach the main result of this exercise:
+\begin{thm}
+	Take any topological space $Z$, $\phi:Z\rightarrow E$ be a map. Take a homotopy $\Phi:I\times Z\rightarrow B$ with $F(0,.)\equiv p\circ \phi$. \\ Then, there is a homotopy $\tilde{\Phi}:I\times Z\rightarrow E$ with 
+	\begin{itemize}
+	\item $\tilde{\Phi}(0,.)\equiv \phi$
+	\item $p\circ \tilde{\Phi} = \Phi$
+	\end{itemize}
+\end{thm}
+\textbf{\emph{Proof:}}
+We treat $\Phi$ as a continuous map $:Z\rightarrow\text{Map}(I,\text{Map}(A,W)$. Then we construct $\varphi:\text{Map}(I,\text{Map}(A,W))\rightarrow\text{Map}(I,\text{Map}(X,W))$ such that 
+\begin{itemize}
+\item $\varphi(H)$ is equal to $H$ when restricted to $A$. 
+\item $\forall z\in Z$, $\varphi(\Phi(z))$ is equal to $\phi(z)$ when restricted to $\{0\}\in I$. 
+\end{itemize}
+This is possible because $(X,A)$ is a Borsuk pair. By corollary \ref{gold}, such a $\varphi$ is also continuous.\\ Hence, $\varphi\circ\Phi:Z \rightarrow\text{Map}(I,\text{Map}(A,W)$ is continuous. \\ 
+$\varphi\circ\Phi$ gives us the required $\tilde{\Phi}$. $\blacksquare$
+\begin{cor}
+$(E,B,p)$ is a strong Serre fibration.
+\end{cor}
+\begin{cor}
+Take $X=I,\ A=\{0,1\}$. Then, $E=\text{Map}(I,W)$ is the space of paths in $W$, $B=W\times W$, $p(\gamma) = (\gamma(0), \gamma(1))$. \\$(E,B,p)$ as above is a strong Serre fibration.
+\end{cor}
+
+\section{\normalsize{Lecture 9, Exercise 9:}}
+For a covering $p:\tilde{X}\rightarrow X$, the fiber $=p^{-1}(x_0)$ is a discrete topological space; and $\pi_n(p^{-1}(x_0)) =0$ for all $n\geqslant 1$. \\[8pt]
+We have an exact sequence 
+$$\rightarrow \pi_n(p^{-1}(x_0)) \rightarrow \pi_n(\tilde{X})\rightarrow \pi_n(X) \rightarrow \pi_{n-1}(p^{-1}(x_0)) \rightarrow$$
+So, for $n\geqslant2$, $\rightarrow \pi_n(\tilde{X})\rightarrow \pi_n(X)$ is an isomorphism. \\[8pt]
+For $n=1$, exactness at $\pi_1(p^{-1}(x_0)) \rightarrow \pi_1(\tilde{X})\rightarrow \pi_1(X)$ gives us the fact that $\pi_n(\tilde{X})\rightarrow \pi_n(X)$ is a monomorphism.
+
+\section{\normalsize{Lecture 9, Exercise 10:}}
+For the Hopf fibration $h:S^{2n+1}\rightarrow \mathbb{C}P^n$, the fiber is $S^1$. We have an exact sequence
+$$\rightarrow \pi_q(S^{2n+1})\rightarrow \pi_q(\mathbb{C}P^n) \rightarrow \pi_{q-1}(S^1) \rightarrow \pi_{q-1}(S^{2n+1})\rightarrow$$
+So, for $q\leqslant2n$, $\pi_q(S^{2n+1})=\pi_{q-1}(S^{2n+1})=0$, therefore $\pi_q(\mathbb{C}P^n)\rightarrow \pi_{q-1}(S^1)$ is an isomorphism. \\[8pt]
+$\pi_0(S^1) = 0$; $\pi_1(S^1) = \mathbb{Z}$; and the universal cover of $S^1$ is $\mathbb{R}$ which is contractible, therefore, $\pi_q(S^1)=0$ for $q\geqslant 2$.
+$$\pi_q(\mathbb{C}P^n)= 
+\begin{cases}
+0, & \ \ \ q=0,1\\ 
+\mathbb{Z}& \ \ \ q=2 \\ 
+0& \ \ \ 3\leqslant q\leqslant 2n
+\end{cases}
+$$
+\begin{clm}
+For any $CW$-complex $X$, $\pi_n(X)=\pi_n(\text{sk}_{n+1}(X))$. 
+\end{clm}
+\textbf{\emph{Proof:}}
+We construct $(S^n\times I, S^n)$ as a $CW$-pair as follows: 
+\begin{enumerate}
+\item $S^n = e^0_0\cup e^n_0$, 
+\begin{itemize}
+\item $f^n_1(\partial e^n_0) = e^0_0$
+\end{itemize}
+\item $S^n\times I = (e^0_0\cup e^0_1)\cup e^1\cup (e^n_0\cup e^n_1)\cup e^{n+1}$
+\begin{itemize}
+\item $f^1(\partial e^1)$ is given by $f^1(0)=e^0_0,\ f^1(1)=e^0_1$
+\item $f^n_1(\partial e^n_1) = e^0_1$, $f^n_2(\partial e^n_2) = e^0_2$
+\item We write $e^{n+1}\cong D^n\times I$, then $\partial e^{n+1} = (\partial D^n\times I)\cup(D^n\times \partial I)$ \\ $f^{n+1}(\partial D^n\times I) = e^1$ by the canonical projection map \\ $f^{n+1}(D^n\times \{i\}) = e^n_i,\ [i=0,1]$ by the canonical identification
+\end{itemize}
+\end{enumerate}
+Now the claim follows from the \emph{Cellular Approximation Theorem}. $\blacksquare$\\[8pt] 
+We have already seen a $CW$-decomposition of $\mathbb{C}P^{\infty}$ such that $\text{sk}_{2n}(\mathbb{C}P^{\infty})=\text{sk}_{2n+1}(\mathbb{C}P^{\infty}) = \mathbb{C}P^n$. This immediately gives us: 
+\begin{cor}
+$$\pi_q(\mathbb{C}P^{\infty})= 
+\begin{cases}
+\mathbb{Z}& \ \ \ q=2 \\ 
+0& \ \ \ q\neq 2
+\end{cases}
+$$
+And $K(\mathbb{Z},2) \simeq \mathbb{C}P^{\infty}$.
+\end{cor}
+\begin{rem}
+Homotopy uniqueness of $K(\pi, n)$ for abelian $\pi$ and all $n$ has been discussed in \emph{Lecture} $11$, \emph{Section} $8$.
+\end{rem}
+
+\section{\normalsize{Lecture 9, Exercise 11:}}
+We have seen the Serre path-fibration $(E,X,p)$ where $E$ is the space of paths in $X$ starting at $x_0$, $p$ takes a path to its end-point. It's fiber $p^{-1}(x_0)=\Omega X$. 
+\begin{lem}
+For any based topological space $(X, x_0)$, the path-space $E(X,x_0)$ is contractible.
+\end{lem}
+\textbf{\emph{Proof:}} For a path $\gamma:I\rightarrow X$, $s\in(0,1]$, we define $\gamma_s:I\rightarrow X $ by $\gamma_s\left(st\right)$. We shall, by abuse of notation, denote the constatnt path also by $x_0$. 
+\begin{align*}
+ &C: I\times E(X,x_0) \rightarrow E(X,x_0)\\ &C(s,\gamma)=
+ \begin{cases} \gamma_s &\text{ if } s\neq 0 \\ x_0 &\text{ if } s\neq 0 \end{cases}
+\end{align*}
+\begin{itemize}
+\item is clearly continuous on $I$. 
+\item is continuous on $E(X,x_0)$ by lemma \ref{diamond} [take $(X,A)=([0,s],[0,1])$]
+\end{itemize}
+So $C$ is a homotopy taking $E(X,x_0)$ to a point (the constant path). $\blacksquare$ \\[8pt]
+We therefore have a long exact sequence 
+$$\rightarrow \pi_n(E(X,x_0))\rightarrow \pi_n(X)\rightarrow \pi_{n-1}(\Omega X) \rightarrow \pi_{n-1}(E(X,x_0))\rightarrow$$
+and because for all $n\geqslant1$, $\pi_{n}(E(X,x_0))=\pi_{n-1}(E(X,x_0))=0$, we have $\pi_n(X)\rightarrow \pi_{n-1}(\Omega X)$ to be an isomorphism. 
+\begin{cor}
+For abelian groups $\pi$, $\Omega K(\pi,n)\simeq K(\pi,n-1)$.
+\end{cor}
+
+
+\end{document}
